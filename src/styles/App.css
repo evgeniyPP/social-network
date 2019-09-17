@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app-wrapper {
+  display: grid;
+  height: 100vh;
+  grid-template-areas:
+    "header header"
+    "navbar content"
+    "footer footer";
+  grid-template-columns: 30vh 1fr;
+  grid-template-rows: 10vh 1fr;
+}

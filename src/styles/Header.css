@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: header;
+  background-color: green;
+}
+
+.logo {
+  position: absolute;
+  width: 65px;
+  left: 10px;;
+  height: auto;
+}
