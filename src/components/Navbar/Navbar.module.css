@@ -1,0 +1,32 @@
+.navbar {
+  grid-area: navbar;
+  background-color: #444a64;
+}
+
+.navbar ul {
+  padding: 0;
+  margin-top: 40px;
+}
+
+.item {
+  list-style: none;
+}
+
+.item a {
+  color: #a6a7aa;
+  display: flex;
+  padding-left: 50px;
+  align-items: center;
+  height: 50px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.item a:hover {
+  background-color: #01aff4;
+  color: #f8f8f8;
+}
+
+.item a.active {
+  color: #f8f8f8;
+}

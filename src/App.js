@@ -1,17 +1,30 @@
-import React from 'react';
-import Header from './components/Header';
-import Navbar from './components/Navbar';
-import Content from './components/Content';
-import '../src/styles/App.css';
+import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import Header from "./components/Header/Header";
+import Navbar from "./components/Navbar/Navbar";
+import Profile from "./components/Profile/Profile";
+import Dialogs from "./components/Dialogs/Dialogs";
+import News from "./components/dummies/News";
+import Music from "./components/dummies/Music";
+import Settings from "./components/dummies/Settings";
+import "./App.css";
 
 const App = () => {
   return (
-    <div className='app-wrapper'>
-      <Header />
-      <Navbar />
-      <Content />
-    </div>)
-}
-  
+    <BrowserRouter>
+      <div className="app-wrapper">
+        <Header />
+        <Navbar />
+        <div className="app-wrapper__content">
+          <Route path="/profile" component={Profile} />
+          <Route path="/dialogs" component={Dialogs} />
+          <Route path="/news" component={News} />
+          <Route path="/music" component={Music} />
+          <Route path="/settings" component={Settings} />
+        </div>
+      </div>
+    </BrowserRouter>
+  );
+};
 
 export default App;

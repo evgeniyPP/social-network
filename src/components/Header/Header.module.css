@@ -1,14 +1,19 @@
 .header {
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   grid-area: header;
-  background-color: green;
+  background-color: #444a64;
+}
+
+.header h1 {
+  color: #f8f8f8;
 }
 
 .logo {
   position: absolute;
   width: 65px;
-  left: 10px;;
+  left: 10px;
   height: auto;
 }
