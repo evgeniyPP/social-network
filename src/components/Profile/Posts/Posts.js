@@ -6,7 +6,10 @@ import s from "./Posts.module.css";
 const Posts = () => {
   return (
     <div>
-      <textarea placeholder="New Post will be here"></textarea>
+      <div className={s.new_post}>
+        <textarea placeholder="Создать новый пост"></textarea>
+        <a href="#!">Добавить пост</a>
+      </div>
       {PostsDB.map(post => {
         return <Post id={post.id} message={post.message} likes={post.likes} />;
       })}
