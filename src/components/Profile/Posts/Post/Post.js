@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Post.module.css";
 
-const Post = props => {
+const Post = (props) => {
   return (
     <div className={s.post}>
       <img

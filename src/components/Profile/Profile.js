@@ -2,11 +2,11 @@ import React from "react";
 import Posts from "./Posts/Posts";
 import s from "./Profile.module.css";
 
-const Profile = () => {
+const Profile = props => {
   return (
     <div className={s.profile}>
       <img src="https://picsum.photos/id/993/1000/150" alt="main" />
-      <Posts />
+      <Posts posts={props.state.postsDB} />
     </div>
   );
 };

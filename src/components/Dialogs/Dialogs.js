@@ -1,14 +1,13 @@
 import React from "react";
 import Username from "./Username/Username";
 import Messages from "./Messages/Messages";
-import { UsersDB } from "../../database";
 import s from "./Dialogs.module.css";
 
-const Dialogs = () => {
+const Dialogs = props => {
   return (
     <div className={s.dialogs}>
       <h1>Dialogs</h1>
-      <Username className={s.left} users={UsersDB} />
+      <Username className={s.left} users={props.state.usersDB} />
       <div className={s.right}>
         <Messages message="Hello" />
         <Messages message="How r u" />
