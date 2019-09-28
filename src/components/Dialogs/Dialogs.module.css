@@ -9,6 +9,9 @@
 
 .dialogs h1 {
   grid-area: header;
+  justify-self: center;
+  padding-top: 10px;
+  text-align: center;
 }
 
 .left {

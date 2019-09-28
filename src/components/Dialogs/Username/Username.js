@@ -7,7 +7,9 @@ const Username = props => {
     <ul className={s.item}>
       {props.users.map(user => (
         <li>
-          <NavLink to={"/dialogs/" + user.id}>{user.name}</NavLink>
+          <NavLink className={s.link} to={"/dialogs/" + user.id}>
+            {user.name}
+          </NavLink>
         </li>
       ))}
     </ul>

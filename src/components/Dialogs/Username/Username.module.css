@@ -1,0 +1,26 @@
+.item li {
+  position: relative;
+  list-style: none;
+  padding-left: 60px;
+  padding-bottom: 30px;
+}
+
+.link {
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #444a64;
+  line-height: 2.5em;
+}
+
+.item li::before {
+  content: "";
+  position: absolute;
+  box-sizing: border-box;
+  width: 50px;
+  height: 50px;
+  left: 0;
+  background: url("../../../images/avatar.png") 50% 50%;
+  border: 2px solid #444a64;
+  border-radius: 50%;
+}

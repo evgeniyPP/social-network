@@ -9,8 +9,8 @@ const Dialogs = props => {
       <h1>Dialogs</h1>
       <Username className={s.left} users={props.state.usersDB} />
       <div className={s.right}>
-        <Messages message="Hello" />
-        <Messages message="How r u" />
+        <Messages userId="1" message="Hello" />
+        <Messages userId="2" message="Hi! How r u" />
       </div>
     </div>
   );
