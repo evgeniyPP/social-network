@@ -11,7 +11,7 @@
   font-size: 14px;
 }
 
-.new_post a {
+.new_post button {
   text-decoration: none;
   text-transform: uppercase;
   font-size: 14px;
@@ -19,4 +19,5 @@
   border: 1px solid transparent;
   padding: 10px 20px;
   background-color: #ea4335;
+  user-select: none;
 }
