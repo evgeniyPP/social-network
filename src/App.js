@@ -21,10 +21,7 @@ const App = props => {
             render={() => (
               <Profile
                 profilePage={props.state.profilePage}
-                addPost={props.store.addPost.bind(props.store)}
-                updateNewPostText={props.store.updateNewPostText.bind(
-                  props.store
-                )}
+                dispatch={props.dispatch}
               />
             )}
           />

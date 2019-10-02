@@ -10,7 +10,7 @@ let rerenderEntireTree = props => {
     <BrowserRouter>
       <App
         state={props}
-        store={store}
+        dispatch={store.dispatch.bind(store)}
       />
     </BrowserRouter>,
     document.getElementById("root")
