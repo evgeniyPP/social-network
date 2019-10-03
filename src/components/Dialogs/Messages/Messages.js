@@ -1,13 +1,41 @@
 import React from "react";
 import s from "./Messages.module.css";
-import "./Messages.css";
+import { Message } from "./Message/Message";
+import {
+  addMessageActionCreator,
+  updateNewMessageTextActionCreator
+} from "../../../state";
 
 const Messages = props => {
-  let classAdd = props.userId === "1" ? "iam" : "friend";
+  let newMessageElement = React.createRef();
+
+  const addMessage = () => {
+    props.dispatch(addMessageActionCreator());
+  };
+
+  const onNewMessageChange = () => {
+    let text = newMessageElement.current.value;
+    props.dispatch(updateNewMessageTextActionCreator(text));
+  };
 
   return (
     <div>
-      <p className={s.messages + " " + classAdd}>{props.message}</p>
+      <div>
+        {props.messages.map(message => {
+          return <Message id={message.id} text={message.message} />;
+        })}
+      </div>
+      <div className={s.newMessage}>
+        <textarea
+          ref={newMessageElement}
+          placeholder="Новое сообщение"
+          value={props.newMessageText}
+          onChange={onNewMessageChange}
+        />
+        <button onClick={addMessage} href="#!">
+          Отправить сообщение
+        </button>
+      </div>
     </div>
   );
 };
