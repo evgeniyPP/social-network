@@ -1,5 +1,22 @@
-const sidebarReducer = (state, action) => {
-    return state;
+const initialState = {
+  friendsDB: [
+    {
+      id: 1,
+      name: "Андрей"
+    },
+    {
+      id: 2,
+      name: "Влад"
+    },
+    {
+      id: 3,
+      name: "Катя"
+    }
+  ]
 };
 
-export default sidebarReducer;
+const navbarReducer = (state = initialState, action) => {
+  return state;
+};
+
+export default navbarReducer;
