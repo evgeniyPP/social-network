@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { store } from "./state";
+import { store } from "./redux/state";
 import * as serviceWorker from "./serviceWorker";
 
 let rerenderEntireTree = props => {
