@@ -1,16 +1,12 @@
 import React from "react";
-import Posts from "./Posts/Posts";
+import PostsContainer from "./Posts/PostsContainer";
 import s from "./Profile.module.css";
 
 const Profile = props => {
   return (
     <div className={s.profile}>
       <img src="https://picsum.photos/id/993/1000/150" alt="main" />
-      <Posts
-        posts={props.profilePage.postsDB}
-        newPostText={props.profilePage.newPostText}
-        dispatch={props.dispatch}
-      />
+      <PostsContainer store={props.store} />
     </div>
   );
 };

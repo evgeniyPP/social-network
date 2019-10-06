@@ -4,6 +4,7 @@ import s from "./Navbar.module.css";
 import Friends from "./Friends/Friends";
 
 const Navbar = props => {
+  let state = props.store.getState();
   return (
     <div className={s.navbar}>
       <ul>
@@ -33,8 +34,7 @@ const Navbar = props => {
           </NavLink>
         </li>
       </ul>
-
-      <Friends friends={props.state.friendsDB} />
+      <Friends friends={state.navbar.friendsDB} />
     </div>
   );
 };
