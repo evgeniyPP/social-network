@@ -6,7 +6,7 @@ const Profile = props => {
   return (
     <div className={s.profile}>
       <img src="https://picsum.photos/id/993/1000/150" alt="main" />
-      <PostsContainer store={props.store} />
+      <PostsContainer />
     </div>
   );
 };

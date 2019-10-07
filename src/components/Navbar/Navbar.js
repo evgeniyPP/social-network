@@ -2,9 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Navbar.module.css";
 import Friends from "./Friends/Friends";
+import StoreContext from "../../StoreContext";
 
-const Navbar = props => {
-  let state = props.store.getState();
+const Navbar = () => {
   return (
     <div className={s.navbar}>
       <ul>
@@ -34,7 +34,11 @@ const Navbar = props => {
           </NavLink>
         </li>
       </ul>
-      <Friends friends={state.navbar.friendsDB} />
+      <StoreContext.Consumer>
+        {store => {
+          return <Friends friends={store.getState().navbar.friendsDB} />;
+        }}
+      </StoreContext.Consumer>
     </div>
   );
 };

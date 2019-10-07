@@ -1,14 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import StoreContext from './StoreContext';
 import App from "./App";
 import { store } from "./redux/redux-store";
 import * as serviceWorker from "./serviceWorker";
 
-const rerenderEntireTree = props => {
+const rerenderEntireTree = () => {
   ReactDOM.render(
     <BrowserRouter>
-      <App store={props} />
+      <StoreContext.Provider value={store}>
+        <App />
+      </StoreContext.Provider>
     </BrowserRouter>,
     document.getElementById("root")
   );
