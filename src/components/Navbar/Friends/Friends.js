@@ -4,7 +4,7 @@ import s from "./Friends.module.css";
 const Friends = props => {
   let friend = props.friends.map(friend => {
     return (
-      <div className={s.friendInstance}>
+      <div key={friend.id} className={s.friendInstance}>
         <img
           className={s.friendIcon}
           src="https://cdn1.iconfinder.com/data/icons/main-ui-elements-with-colour-bg/512/male_avatar-512.png"

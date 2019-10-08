@@ -28,7 +28,7 @@ const Posts = props => {
         </button>
       </div>
       {props.posts.map(post => {
-        return <Post id={post.id} message={post.message} likes={post.likes} />;
+        return <Post key={post.id} id={post.id} message={post.message} likes={post.likes} />;
       })}
     </div>
   );

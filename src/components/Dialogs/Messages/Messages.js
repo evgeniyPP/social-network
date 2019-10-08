@@ -18,7 +18,7 @@ const Messages = props => {
     <div>
       <div>
         {props.messages.map(message => {
-          return <Message id={message.id} text={message.message} />;
+          return <Message key={message.id} id={message.id} text={message.message} />;
         })}
       </div>
       <div className={s.newMessage}>

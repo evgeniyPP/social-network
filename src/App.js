@@ -9,7 +9,7 @@ import Music from "./components/dummies/Music";
 import Settings from "./components/dummies/Settings";
 import "./App.css";
 
-const App = props => {
+const App = () => {
   return (
     <div className="app-wrapper">
       <Header />
