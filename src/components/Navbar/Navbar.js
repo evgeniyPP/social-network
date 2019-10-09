@@ -33,6 +33,11 @@ const Navbar = () => {
             Настройки
           </NavLink>
         </li>
+        <li className={s.item}>
+          <NavLink to="/users" activeClassName={s.active}>
+            Пользователи
+          </NavLink>
+        </li>
       </ul>
       <Friends friends={store.getState().navbar.friendsDB} />;
     </div>
