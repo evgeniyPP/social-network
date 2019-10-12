@@ -7,22 +7,55 @@ class Users extends React.Component {
   componentDidMount() {
     if (!this.props.users.length) {
       axios
-        .get("https://social-network.samuraijs.com/api/1.0/users")
+        .get(
+          `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+        )
         .then(response => {
           this.props.setUsers(response.data.items);
+          this.props.setTotalCount(response.data.totalCount);
         });
     }
   }
 
+  onPageChanged(num) {
+    this.props.setCurrentPage(num);
+    axios
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${num}&count=${this.props.pageSize}`
+      )
+      .then(response => {
+        this.props.setUsers(response.data.items);
+      });
+  }
+
   render() {
+    let pagesCount = Math.ceil(this.props.totalCount / this.props.pageSize);
+    if (pagesCount > 15) pagesCount = 15;
+    const pagesNum = [];
+    for (let i = 1; i <= pagesCount; i++) pagesNum.push(i);
+
     return (
       <div className={s.usersPage}>
+        <div>
+          {pagesNum.map(num => (
+            <span
+              className={this.props.currentPage === num && s.selectedPage}
+              onClick={() => {
+                this.onPageChanged(num);
+              }}
+            >
+              {num}
+            </span>
+          ))}
+        </div>
         {this.props.users.map(user => (
           <div key={user.id}>
             <span>
               <div>
                 <img
-                  src={user.photos.small !== null ? user.photos.small : userPhoto}
+                  src={
+                    user.photos.small !== null ? user.photos.small : userPhoto
+                  }
                   alt=""
                 />
               </div>

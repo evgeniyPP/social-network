@@ -1,70 +1,14 @@
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET-USERS";
+const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
+const SET_TOTAL_COUNT = "SET-TOTAL-COUNT";
 
 const initialState = {
-  findUsersDB: [
-    // {
-    //   id: 1,
-    //   photoUrl:
-    //     "https://icon-library.net/images/avatar-icon-images/avatar-icon-images-4.jpg",
-    //   name: "Дмитрий",
-    //   status: "Ура!!!",
-    //   location: {
-    //     country: "Россия",
-    //     city: "Москва"
-    //   },
-    //   followed: false
-    // },
-    // {
-    //   id: 2,
-    //   photoUrl:
-    //     "https://cdn.iconscout.com/icon/free/png-256/avatar-367-456319.png",
-    //   name: "Коля",
-    //   status: "Дима мой друг",
-    //   location: {
-    //     country: "Россия",
-    //     city: "Питер"
-    //   },
-    //   followed: false
-    // },
-    // {
-    //   id: 3,
-    //   photoUrl:
-    //     "https://icon-library.net/images/icon-avatars/icon-avatars-12.jpg",
-    //   name: "Ольга",
-    //   status: "Маникюр за 100 рублей, звоните",
-    //   location: {
-    //     country: "Украина",
-    //     city: "Киев"
-    //   },
-    //   followed: true
-    // },
-    // {
-    //   id: 4,
-    //   photoUrl:
-    //     "https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/3_avatar-512.png",
-    //   name: "Петя",
-    //   status: "Беру деньги в долг. Много",
-    //   location: {
-    //     country: "Россия",
-    //     city: "Казань"
-    //   },
-    //   followed: false
-    // },
-    // {
-    //   id: 5,
-    //   photoUrl:
-    //     "https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/10_avatar-512.png",
-    //   name: "Гена",
-    //   status: "Лимон – лимонад, блаблабла",
-    //   location: {
-    //     country: "Беларусь",
-    //     city: "Минск"
-    //   },
-    //   followed: false
-    // }
-  ]
+  findUsersDB: [],
+  pageSize: 5,
+  totalCount: 0,
+  currentPage: 1
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -88,7 +32,17 @@ const usersReducer = (state = initialState, action) => {
     case SET_USERS:
       return {
         ...state,
-        findUsersDB: [...state.findUsersDB, ...action.users]
+        findUsersDB: action.users
+      };
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.num
+      };
+    case SET_TOTAL_COUNT:
+      return {
+        ...state,
+        totalCount: action.total
       };
     default:
       return state;
@@ -98,5 +52,7 @@ const usersReducer = (state = initialState, action) => {
 export const followAC = userId => ({ type: FOLLOW, userId });
 export const unfollowAC = userId => ({ type: UNFOLLOW, userId });
 export const setUsersAC = users => ({ type: SET_USERS, users });
+export const setCurrentPageAC = num => ({ type: SET_CURRENT_PAGE, num });
+export const setTotalCountAC = total => ({ type: SET_TOTAL_COUNT, total });
 
 export default usersReducer;
