@@ -1,7 +1,7 @@
 .header {
   display: flex;
   position: relative;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   grid-area: header;
   background-color: #444a64;
@@ -9,7 +9,7 @@
 
 .header h1 {
   color: #f8f8f8;
-  padding-left: 14vw;
+  padding-left: 16em;
 }
 
 .logo {
@@ -17,4 +17,13 @@
   width: 65px;
   left: 10px;
   height: auto;
+}
+
+.loginBlock {
+  order: 1;
+}
+
+.loginBlock a {
+  color: white;
+  text-decoration: none;
 }
