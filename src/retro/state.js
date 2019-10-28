@@ -1,6 +1,6 @@
-import profileReducer from "./profile-reducer";
-import dialogsReducer from "./dialogs-reducer";
-import navbarReducer from "./navbar-reducer";
+import profileReducer from "../redux/profile-reducer";
+import dialogsReducer from "../redux/dialogs-reducer";
+import navbarReducer from "../redux/navbar-reducer";
 
 export const store = {
   _state: {
