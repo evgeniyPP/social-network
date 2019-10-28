@@ -67,8 +67,9 @@ const usersReducer = (state = initialState, action) => {
   }
 };
 
-export const follow = userId => ({ type: FOLLOW, userId });
-export const unfollow = userId => ({ type: UNFOLLOW, userId });
+// Action Creators
+export const followSuccess = userId => ({ type: FOLLOW, userId });
+export const unfollowSuccess = userId => ({ type: UNFOLLOW, userId });
 export const setUsers = users => ({ type: SET_USERS, users });
 export const setCurrentPage = num => ({ type: SET_CURRENT_PAGE, num });
 export const setTotalCount = total => ({ type: SET_TOTAL_COUNT, total });
@@ -82,6 +83,7 @@ export const toggleFollowingInProgress = (isFetching, userId) => ({
   userId
 });
 
+// Thunk Creators
 export const getUsers = (currentPage, pageSize) => dispatch => {
   dispatch(toggleIsFetching(true));
   usersAPI.getUsers(currentPage, pageSize).then(data => {
@@ -89,6 +91,27 @@ export const getUsers = (currentPage, pageSize) => dispatch => {
     dispatch(setUsers(data.items));
     dispatch(setTotalCount(data.totalCount));
   });
+};
+export const following = (isFollow, user) => dispatch => {
+  dispatch(toggleFollowingInProgress(true, user.id));
+  if (isFollow === "FOLLOW") {
+    usersAPI.getFollow(user.id).then(data => {
+      if (data.resultCode === 0) {
+        dispatch(followSuccess(user.id));
+      }
+      dispatch(toggleFollowingInProgress(false, user.id));
+    });
+  } else if (isFollow === "UNFOLLOW") {
+    usersAPI.getUnfollow(user.id).then(data => {
+      if (data.resultCode === 0) {
+        dispatch(unfollowSuccess(user.id));
+        dispatch(toggleFollowingInProgress(false, user.id));
+      }
+    });
+  } else {
+    dispatch(toggleFollowingInProgress(false, user.id));
+    throw new Error("Wrong following request");
+  }
 };
 
 export default usersReducer;
