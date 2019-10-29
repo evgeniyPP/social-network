@@ -31,7 +31,7 @@ const setUserData = (userId, email, login) => ({
 // Thunk Creator
 export const getMe = () => dispatch => {
   authAPI.me().then(response => {
-    if (response.data.result !== 0) {
+    if (response.data.resultCode === 0) {
       let { id, email, login } = response.data.data;
       dispatch(setUserData(id, email, login));
     }

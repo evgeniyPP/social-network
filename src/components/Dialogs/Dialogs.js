@@ -2,16 +2,15 @@ import React from "react";
 import Username from "./Username/Username";
 import s from "./Dialogs.module.css";
 import MessagesContainer from "./Messages/MessagesContainer";
-import { store } from "../../redux/redux-store";
+import { Redirect } from "react-router-dom";
 
-const Dialogs = () => {
+const Dialogs = props => {
+  if (props.isAuth === false) return <Redirect to={"/login"} />;
+
   return (
     <div className={s.dialogs}>
       <h1>Dialogs</h1>
-      <Username
-        className={s.left}
-        users={store.getState().dialogsPage.usersDB}
-      />
+      <Username className={s.left} users={props.users} />
       <div className={s.right}>
         <MessagesContainer />
       </div>
