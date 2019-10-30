@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getProfile } from "../../redux/profile-reducer";
 import { withNoAuthRedirect } from "../hoc/withNoAuthRedirect";
+import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -20,7 +21,11 @@ const mapStateToProps = state => ({
   profile: state.profilePage.profile
 });
 
-export default connect(
-  mapStateToProps,
-  { getProfile }
-)(withNoAuthRedirect(withRouter(ProfileContainer)));
+export default compose(
+  connect(
+    mapStateToProps,
+    { getProfile }
+  ),
+  withNoAuthRedirect,
+  withRouter
+)(ProfileContainer);
