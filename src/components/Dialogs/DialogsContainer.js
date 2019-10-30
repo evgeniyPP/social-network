@@ -1,9 +1,9 @@
 import Dialogs from "./Dialogs";
 import { connect } from "react-redux";
+import { withNoAuthRedirect } from "../hoc/withNoAuthRedirect";
 
 const mapStateToProps = state => ({
-  users: state.dialogsPage.usersDB,
-  isAuth: state.auth.isAuth
+  users: state.dialogsPage.usersDB
 });
 
-export default connect(mapStateToProps)(Dialogs);
+export default connect(mapStateToProps)(withNoAuthRedirect(Dialogs));
