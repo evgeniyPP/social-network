@@ -1,5 +1,6 @@
 import React from "react";
 import s from "./ProfileInfo.module.css";
+import ProfileStatus from "../ProfileStatus/ProfileStatus";
 import Preloader from "../../common/Preloader/Preloader";
 import avatar from "../../../images/avatar.jpg";
 
@@ -25,6 +26,10 @@ const ProfileInfo = props => {
         <div className={s.mainInfo}>
           <p className={s.fullName}>{props.profile.fullName}</p>
           <p className={s.aboutMe}>{props.profile.aboutMe}</p>
+          <ProfileStatus
+            status={props.status}
+            updateStatus={props.updateStatus}
+          />
         </div>
         <div className={s.contacts}>
           <p className={s.facebook}>{props.profile.contacts.facebook}</p>
