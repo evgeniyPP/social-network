@@ -1,34 +1,24 @@
 import React from "react";
 import Post from "./Post/Post";
-import s from "./Posts.module.css";
+import NewPost from "./NewPost";
 
 const Posts = props => {
-  let newPostElement = React.createRef();
-
-  const addPost = () => {
-    props.addPost();
-  };
-
-  const onNewPostTextChange = () => {
-    let text = newPostElement.current.value;
-    props.updateNewPostText(text);
+  const addPost = values => {
+    props.addPost(values.newPostText);
   };
 
   return (
     <div>
-      <div className={s.new_post}>
-        <textarea
-          ref={newPostElement}
-          placeholder="Создать новый пост"
-          value={props.newPostText}
-          onChange={onNewPostTextChange}
-        />
-        <button onClick={addPost} href="#!">
-          Добавить пост
-        </button>
-      </div>
+      <NewPost onSubmit={addPost} />
       {props.posts.map(post => {
-        return <Post key={post.id} id={post.id} message={post.message} likes={post.likes} />;
+        return (
+          <Post
+            key={post.id}
+            id={post.id}
+            message={post.message}
+            likes={post.likes}
+          />
+        );
       })}
     </div>
   );
