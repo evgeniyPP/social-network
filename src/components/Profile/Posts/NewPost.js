@@ -5,9 +5,9 @@ import { required, maxLength } from "../../../utils/validators";
 import Element from "../../common/FormsControls/FormsControls";
 
 const thisMaxLength = maxLength(100);
+const textarea = Element("textarea");
 
 const NewPost = props => {
-  const textarea = Element("textarea");
   return (
     <form className={s.new_post} onSubmit={props.handleSubmit}>
       <Field

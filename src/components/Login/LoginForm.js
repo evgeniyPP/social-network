@@ -4,9 +4,9 @@ import { required, maxLength } from "../../utils/validators";
 import Element from "../common/FormsControls/FormsControls";
 
 const thisMaxLength = maxLength(25);
+const Input = Element("input");
 
 const LoginForm = props => {
-  const Input = Element("input");
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
