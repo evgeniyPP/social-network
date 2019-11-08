@@ -12,9 +12,9 @@ const LoginForm = props => {
       <div>
         <Field
           component={Input}
-          name={"login"}
+          name={"email"}
           type="text"
-          placeholder={"Login"}
+          placeholder={"Email"}
           validate={[required, thisMaxLength]}
         />
       </div>
@@ -22,7 +22,7 @@ const LoginForm = props => {
         <Field
           component={Input}
           name={"password"}
-          type="text"
+          type="password"
           placeholder={"Password"}
           validate={[required, thisMaxLength]}
         />
