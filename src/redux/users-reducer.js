@@ -84,9 +84,10 @@ export const toggleFollowingInProgress = (isFetching, userId) => ({
 });
 
 // Thunk Creators
-export const getUsers = (currentPage, pageSize) => dispatch => {
+export const getUsers = (page, pageSize) => dispatch => {
   dispatch(toggleIsFetching(true));
-  usersAPI.getUsers(currentPage, pageSize).then(data => {
+  dispatch(setCurrentPage(page));
+  usersAPI.getUsers(page, pageSize).then(data => {
     dispatch(toggleIsFetching(false));
     dispatch(setUsers(data.items));
     dispatch(setTotalCount(data.totalCount));
