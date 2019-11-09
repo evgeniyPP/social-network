@@ -8,6 +8,12 @@ import {
   updateStatus
 } from "../../redux/profile-reducer";
 import { compose } from "redux";
+import {
+  selectProfile,
+  selectStatus,
+  selectIsAuth,
+  selectId
+} from "../../utils/selectors";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -32,10 +38,10 @@ class ProfileContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  profile: state.profilePage.profile,
-  status: state.profilePage.status,
-  isAuth: state.auth.isAuth,
-  myUserId: state.auth.id
+  profile: selectProfile(state),
+  status: selectStatus(state),
+  isAuth: selectIsAuth(state),
+  myUserId: selectId(state)
 });
 
 export default compose(

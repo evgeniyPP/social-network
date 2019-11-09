@@ -1,10 +1,11 @@
 import { addMessageActionCreator } from "../../../redux/dialogs-reducer";
 import Messages from "./Messages";
 import { connect } from "react-redux";
+import { selectMessagesDB } from "../../../utils/selectors";
 
 const mapStateToProps = state => {
   return {
-    messages: state.dialogsPage.messagesDB
+    messages: selectMessagesDB(state)
   };
 };
 

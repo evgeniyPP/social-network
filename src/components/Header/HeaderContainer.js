@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { logout } from "../../redux/auth-reducer";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
+import { selectIsAuth, selectLogin } from "../../utils/selectors";
 
 class HeaderContainer extends React.Component {
   render() {
@@ -12,9 +13,10 @@ class HeaderContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isAuth: state.auth.isAuth,
-  login: state.auth.login
+  isAuth: selectIsAuth(state),
+  login: selectLogin(state)
 });
+
 export default compose(
   withRouter,
   connect(
