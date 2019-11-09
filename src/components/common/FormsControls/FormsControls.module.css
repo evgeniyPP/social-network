@@ -1,6 +1,3 @@
-.formControl {
-}
-
 .formControl.error input,
 .formControl.error textarea {
   border: solid 1px red;
@@ -10,4 +7,12 @@
   color: red;
   font-size: 18px;
   font-weight: bold;
+}
+
+.formSummaryError {
+  display: inline-block;
+  border: solid 1px red;
+  padding: 5px;
+  margin: 5px 0;
+  color: #ea4335;
 }
