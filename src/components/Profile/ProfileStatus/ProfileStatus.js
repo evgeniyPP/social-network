@@ -1,56 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import s from "./ProfileStatus.module.css";
 
-class ProfileStatus extends React.Component {
-  state = {
-    editMode: false,
-    status: this.props.status
+const ProfileStatus = props => {
+  let [editMode, setEditMode] = useState(false);
+  let [status, setStatus] = useState(props.status);
+
+  useEffect(() => {
+    setStatus(props.status);
+  }, [props.status]);
+
+  const activateEditMode = () => {
+    setEditMode(true);
   };
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.status !== this.props.status) {
-      this.setState({
-        status: this.props.status
-      });
-    }
-  }
-
-  activateEditMode = () => {
-    this.setState({
-      editMode: true
-    });
+  const deactivateEditMode = () => {
+    setEditMode(false);
+    props.updateStatus(status);
   };
 
-  deactivateEditMode = () => {
-    this.setState({
-      editMode: false
-    });
-    this.props.updateStatus(this.state.status);
+  const onStatusChange = e => {
+    setStatus(e.currentTarget.value);
   };
 
-  onStatusChange = e => {
-    this.setState({ status: e.currentTarget.value });
-  };
-
-  render() {
-    return (
-      <div className={s.status}>
-        {!this.state.editMode ? (
-          <span onDoubleClick={this.activateEditMode}>
-            {this.props.status || "____________"}
-          </span>
-        ) : (
-          <input
-            autoFocus={true}
-            onBlur={this.deactivateEditMode}
-            type="text"
-            value={this.state.status}
-            onChange={this.onStatusChange}
-          />
-        )}
-      </div>
-    );
-  }
-}
+  return (
+    <div className={s.status}>
+      {!editMode ? (
+        <span onDoubleClick={activateEditMode}>
+          {props.status || "____________"}
+        </span>
+      ) : (
+        <input
+          autoFocus={true}
+          onBlur={deactivateEditMode}
+          type="text"
+          value={status}
+          onChange={onStatusChange}
+        />
+      )}
+    </div>
+  );
+};
 
 export default ProfileStatus;

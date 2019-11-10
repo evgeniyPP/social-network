@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { following, setCurrentPage, getUsers } from "../../redux/users-reducer";
 import Users from "./Users";
@@ -12,32 +12,28 @@ import {
   selectFollowingInProgress
 } from "../../utils/selectors";
 
-class UsersContainer extends React.Component {
-  componentDidMount() {
-    this.props.getUsers(this.props.currentPage, this.props.pageSize);
-  }
-
-  onPageChanged = num => {
-    this.props.getUsers(num, this.props.pageSize);
+const UsersContainer = props => {
+  const onPageChanged = (num = props.currentPage) => {
+    props.getUsers(num, props.pageSize);
   };
 
-  render() {
-    return (
-      <div>
-        {this.props.isFetching ? <Preloader /> : null}
-        <Users
-          users={this.props.users}
-          pageSize={this.props.pageSize}
-          totalCount={this.props.totalCount}
-          currentPage={this.props.currentPage}
-          onPageChanged={this.onPageChanged}
-          following={this.props.following}
-          followingInProgress={this.props.followingInProgress}
-        />
-      </div>
-    );
-  }
-}
+  useEffect(onPageChanged, [props.currentPage]);
+
+  return (
+    <div>
+      {props.isFetching ? <Preloader /> : null}
+      <Users
+        users={props.users}
+        pageSize={props.pageSize}
+        totalCount={props.totalCount}
+        currentPage={props.currentPage}
+        onPageChanged={onPageChanged}
+        following={props.following}
+        followingInProgress={props.followingInProgress}
+      />
+    </div>
+  );
+};
 
 const mapStateToProps = state => {
   return {
