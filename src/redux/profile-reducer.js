@@ -1,8 +1,8 @@
 import { profileAPI } from "../api/api";
-const ADD_POST = "ADD-POST";
-const SET_PROFILE = "SET-PROFILE";
-const SET_STATUS = "SET-STATUS";
-const DELETE_POST = "DELETE-POST";
+const ADD_POST = "epp-social-network/profilePage/ADD-POST";
+const SET_PROFILE = "epp-social-network/profilePage/SET-PROFILE";
+const SET_STATUS = "epp-social-network/profilePage/SET-STATUS";
+const DELETE_POST = "epp-social-network/profilePage/DELETE-POST";
 
 const initialState = {
   postsDB: [
@@ -74,22 +74,19 @@ const setProfile = profile => ({ type: SET_PROFILE, profile });
 const setStatus = status => ({ type: SET_STATUS, status });
 
 // Thunk Creator
-export const getProfile = userId => dispatch => {
-  profileAPI.getProfile(userId).then(response => {
-    dispatch(setProfile(response.data));
-  });
+export const getProfile = userId => async dispatch => {
+  const response = await profileAPI.getProfile(userId);
+  dispatch(setProfile(response.data));
 };
-export const getStatus = userId => dispatch => {
-  profileAPI.getStatus(userId).then(response => {
-    dispatch(setStatus(response.data));
-  });
+export const getStatus = userId => async dispatch => {
+  const response = await profileAPI.getStatus(userId);
+  dispatch(setStatus(response.data));
 };
-export const updateStatus = status => dispatch => {
-  profileAPI.updateStatus(status).then(response => {
-    if (response.data.resultCode === 0) {
-      dispatch(setStatus(status));
-    }
-  });
+export const updateStatus = status => async dispatch => {
+  const response = await profileAPI.updateStatus(status);
+  if (response.data.resultCode === 0) {
+    dispatch(setStatus(status));
+  }
 };
 
 export default profileReducer;

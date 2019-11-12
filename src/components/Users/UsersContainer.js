@@ -12,12 +12,12 @@ import {
   selectFollowingInProgress
 } from "../../utils/selectors";
 
-const UsersContainer = props => {
-  const onPageChanged = (num = props.currentPage) => {
-    props.getUsers(num, props.pageSize);
+const UsersContainer = React.memo(props => {
+  const { currentPage, pageSize } = props;
+  const onPageChanged = (num = currentPage) => {
+    props.getUsers(num, pageSize);
   };
-
-  useEffect(onPageChanged, [props.currentPage]);
+  useEffect(onPageChanged, [currentPage]);
 
   return (
     <div>
@@ -33,7 +33,7 @@ const UsersContainer = props => {
       />
     </div>
   );
-};
+});
 
 const mapStateToProps = state => {
   return {
@@ -46,11 +46,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    following,
-    setCurrentPage,
-    getUsers
-  }
-)(UsersContainer);
+export default connect(mapStateToProps, {
+  following,
+  setCurrentPage,
+  getUsers
+})(UsersContainer);

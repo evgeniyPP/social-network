@@ -4,10 +4,13 @@ import ProfileStatus from "../ProfileStatus/ProfileStatus";
 import Preloader from "../../common/Preloader/Preloader";
 import avatar from "../../../images/avatar.jpg";
 
-const ProfileInfo = props => {
-  if (!props.profile) {
+const ProfileInfo = ({ profile, status, updateStatus }) => {
+  if (!profile) {
     return <Preloader />;
   }
+
+  const { photos, fullName, aboutMe, contacts } = profile;
+
   return (
     <div className={s.profileInfo}>
       <div>
@@ -18,28 +21,21 @@ const ProfileInfo = props => {
         />
       </div>
       <div className={s.information}>
-        <img
-          className={s.userPhoto}
-          src={props.profile.photos.large || avatar}
-          alt=""
-        />
+        <img className={s.userPhoto} src={photos.large || avatar} alt="" />
         <div className={s.mainInfo}>
-          <p className={s.fullName}>{props.profile.fullName}</p>
-          <p className={s.aboutMe}>{props.profile.aboutMe}</p>
-          <ProfileStatus
-            status={props.status}
-            updateStatus={props.updateStatus}
-          />
+          <p className={s.fullName}>{fullName}</p>
+          <p className={s.aboutMe}>{aboutMe}</p>
+          <ProfileStatus status={status} updateStatus={updateStatus} />
         </div>
         <div className={s.contacts}>
-          <p className={s.facebook}>{props.profile.contacts.facebook}</p>
-          <p className={s.website}>{props.profile.contacts.website}</p>
-          <p className={s.vk}>{props.profile.contacts.vk}</p>
-          <p className={s.twitter}>{props.profile.contacts.twitter}</p>
-          <p className={s.instagram}>{props.profile.contacts.instagram}</p>
-          <p className={s.youtube}>{props.profile.contacts.youtube}</p>
-          <p className={s.github}>{props.profile.contacts.github}</p>
-          <p className={s.mainLink}>{props.profile.contacts.mainLink}</p>
+          <p className={s.facebook}>{contacts.facebook}</p>
+          <p className={s.website}>{contacts.website}</p>
+          <p className={s.vk}>{contacts.vk}</p>
+          <p className={s.twitter}>{contacts.twitter}</p>
+          <p className={s.instagram}>{contacts.instagram}</p>
+          <p className={s.youtube}>{contacts.youtube}</p>
+          <p className={s.github}>{contacts.github}</p>
+          <p className={s.mainLink}>{contacts.mainLink}</p>
         </div>
         <p className={s.fullName}></p>
       </div>

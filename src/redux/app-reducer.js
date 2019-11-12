@@ -1,5 +1,5 @@
 import { getMe } from "./auth-reducer";
-const INITIALIZED_SUCCESS = "INITIALIZED-SUCCESS";
+const INITIALIZED_SUCCESS = "epp-social-network/app/INITIALIZED-SUCCESS";
 
 const initialState = {
   initialized: false

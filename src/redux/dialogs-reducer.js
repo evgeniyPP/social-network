@@ -1,4 +1,4 @@
-const ADD_MESSAGE = "ADD-MESSAGE";
+const ADD_MESSAGE = "epp-social-network/dialogsPage/ADD-MESSAGE";
 
 const initialState = {
   usersDB: [

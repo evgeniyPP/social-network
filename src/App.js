@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Navbar from "./components/Navbar/Navbar";
@@ -16,33 +16,31 @@ import { initializeApp } from "./redux/app-reducer";
 import { withRouter } from "react-router-dom";
 import "./App.css";
 
-class App extends React.Component {
-  componentDidMount() {
-    this.props.initializeApp();
+const App = props => {
+  useEffect(() => {
+    props.initializeApp();
+  }, [props]);
+
+  if (!props.initialized) {
+    return <Preloader />;
   }
 
-  render() {
-    if (!this.props.initialized) {
-      return <Preloader />;
-    }
-
-    return (
-      <div className="app-wrapper">
-        <HeaderContainer />
-        <Navbar />
-        <div className="app-wrapper__content">
-          <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-          <Route path="/dialogs" render={() => <DialogsContainer />} />
-          <Route path="/news" render={() => <News />} />
-          <Route path="/music" render={() => <Music />} />
-          <Route path="/settings" render={() => <Settings />} />
-          <Route path="/users" render={() => <UsersContainer />} />
-          <Route path="/login" render={() => <Login />} />
-        </div>
+  return (
+    <div className="app-wrapper">
+      <HeaderContainer />
+      <Navbar />
+      <div className="app-wrapper__content">
+        <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+        <Route path="/dialogs" render={() => <DialogsContainer />} />
+        <Route path="/news" render={() => <News />} />
+        <Route path="/music" render={() => <Music />} />
+        <Route path="/settings" render={() => <Settings />} />
+        <Route path="/users" render={() => <UsersContainer />} />
+        <Route path="/login" render={() => <Login />} />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   initialized: state.app.initialized
@@ -50,8 +48,5 @@ const mapStateToProps = state => ({
 
 export default compose(
   withRouter,
-  connect(
-    mapStateToProps,
-    { initializeApp }
-  )
+  connect(mapStateToProps, { initializeApp })
 )(App);
