@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import Profile from "./Profile";
 import { withRouter } from "react-router-dom";
@@ -23,7 +24,7 @@ const ProfileContainer = props => {
       props.history.push("/login");
     props.getProfile(userId);
     props.getStatus(userId);
-  }, [props]);
+  }, [props.match.params.userId, props.myUserId]);
 
   return (
     <Profile
@@ -44,8 +45,5 @@ const mapStateToProps = state => ({
 
 export default compose(
   withRouter,
-  connect(
-    mapStateToProps,
-    { getProfile, getStatus, updateStatus }
-  )
+  connect(mapStateToProps, { getProfile, getStatus, updateStatus })
 )(ProfileContainer);

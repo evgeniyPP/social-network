@@ -11,7 +11,8 @@ const Paginator = ({ totalCount, pageSize, onPageChanged, currentPage }) => {
     <div>
       {pagesNum.map(num => (
         <span
-          className={currentPage === num && s.selectedPage}
+          key={num}
+          className={currentPage === num ? s.selectedPage : ""}
           onClick={() => {
             onPageChanged(num);
           }}
