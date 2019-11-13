@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import appReducer from "./app-reducer";
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
@@ -18,7 +18,13 @@ let reducers = combineReducers({
   form: formReducer
 });
 
-export let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = createStore(
+  reducers,
+  composeEnhancers(applyMiddleware(thunkMiddleware))
+);
+console.warn("Delete Redux-DevTools");
+//export const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
-window.store = store;
+window.myStore = store;
 console.warn("Delete windows.store in redux-store.js in build");
