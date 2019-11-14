@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
-import { Route } from "react-router-dom";
+import { compose } from "redux";
+import { Provider, connect } from "react-redux";
+import { BrowserRouter, withRouter, Route } from "react-router-dom";
+import { store } from "./redux/redux-store";
+import { initializeApp } from "./redux/app-reducer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import Navbar from "./components/Navbar/Navbar";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
+import Navbar from "./components/Navbar/Navbar";
 import News from "./components/dummies/News";
 import Music from "./components/dummies/Music";
 import Settings from "./components/dummies/Settings";
-import UsersContainer from "./components/Users/UsersContainer";
 import Login from "./components/Login/Login";
 import Preloader from "./components/common/Preloader/Preloader";
-import { compose } from "redux";
-import { connect } from "react-redux";
-import { initializeApp } from "./redux/app-reducer";
-import { withRouter } from "react-router-dom";
 import "./App.css";
 
 const App = props => {
@@ -46,7 +46,15 @@ const mapStateToProps = state => ({
   initialized: state.app.initialized
 });
 
-export default compose(
+const AppContainer = compose(
   withRouter,
   connect(mapStateToProps, { initializeApp })
 )(App);
+
+export default () => (
+  <BrowserRouter>
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
+  </BrowserRouter>
+);
