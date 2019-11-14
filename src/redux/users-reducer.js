@@ -12,7 +12,7 @@ const TOGGLE_FOLLOWING_IN_PROGRESS =
 
 const initialState = {
   findUsersDB: [],
-  pageSize: 5,
+  pageSize: 10,
   totalCount: 0,
   currentPage: 1,
   isFetching: false,
