@@ -7,9 +7,7 @@ import { initializeApp } from "./redux/app-reducer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import Navbar from "./components/Navbar/Navbar";
-import News from "./components/dummies/News";
-import Music from "./components/dummies/Music";
-import Settings from "./components/dummies/Settings";
+import Dummy from "./components/common/Dummy/Dummy";
 import Login from "./components/Login/Login";
 import Preloader from "./components/common/Preloader/Preloader";
 import "./App.css";
@@ -37,9 +35,9 @@ const App = props => {
         <Suspense fallback={<Preloader />}>
           <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
           <Route path="/dialogs" render={() => <DialogsContainer />} />
-          <Route path="/news" render={() => <News />} />
-          <Route path="/music" render={() => <Music />} />
-          <Route path="/settings" render={() => <Settings />} />
+          <Route path="/news" render={() => <Dummy />} />
+          <Route path="/music" render={() => <Dummy />} />
+          <Route path="/settings" render={() => <Dummy />} />
           <Route path="/users" render={() => <UsersContainer />} />
           <Route path="/login" render={() => <Login />} />
         </Suspense>
