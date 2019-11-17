@@ -1,12 +1,14 @@
-import { authAPI } from "../api/api";
+import { authAPI, securityAPI } from "../api/api";
 import { stopSubmit } from "redux-form";
 const SET_USER_DATA = "epp-social-network/auth/SET_USER_DATA";
+const SET_CAPTCHA = "epp-social-network/auth/SET-CAPTCHA";
 
 const initialState = {
   id: null,
   email: null,
   login: null,
-  isAuth: false
+  isAuth: false,
+  captcha: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -15,6 +17,11 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.payload
+      };
+    case SET_CAPTCHA:
+      return {
+        ...state,
+        captcha: action.captcha
       };
     default:
       return state;
@@ -26,6 +33,10 @@ const setUserData = (id, email, login, isAuth) => ({
   type: SET_USER_DATA,
   payload: { id, email, login, isAuth }
 });
+const setCaptcha = captcha => ({
+  type: SET_CAPTCHA,
+  captcha
+});
 
 // Thunk Creator
 export const getMe = () => async dispatch => {
@@ -36,11 +47,14 @@ export const getMe = () => async dispatch => {
   }
 };
 
-export const login = (email, password, rememberMe) => async dispatch => {
-  const response = await authAPI.login(email, password, rememberMe);
+export const login = (email, password, rememberMe, captcha) => async dispatch => {
+  const response = await authAPI.login(email, password, rememberMe, captcha);
   if (response.data.resultCode === 0) {
     dispatch(getMe());
   } else {
+    if (response.data.resultCode === 10) {
+      dispatch(getCaptcha());
+    }
     let message =
       response.data.messages.length > 0
         ? response.data.messages[0]
@@ -54,6 +68,12 @@ export const logout = () => async dispatch => {
   if (response.data.resultCode === 0) {
     dispatch(setUserData(null, null, null, false));
   }
+};
+
+export const getCaptcha = () => async dispatch => {
+  const response = await securityAPI.getCaptcha();
+  const captcha = response.data.url;
+  dispatch(setCaptcha(captcha));
 };
 
 export default authReducer;

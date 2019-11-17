@@ -6,8 +6,8 @@ import { connect } from "react-redux";
 
 const Login = props => {
   const onSubmit = formData => {
-    const { email, password, rememberMe } = formData;
-    props.login(email, password, rememberMe);
+    const { email, password, rememberMe, captcha } = formData;
+    props.login(email, password, rememberMe, captcha);
   };
 
   if (props.isAuth) {
@@ -17,13 +17,14 @@ const Login = props => {
   return (
     <div>
       <h1>Login</h1>
-      <LoginForm onSubmit={onSubmit} />
+      <LoginForm onSubmit={onSubmit} captcha={props.captcha} />
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  isAuth: state.auth.isAuth
+  isAuth: state.auth.isAuth,
+  captcha: state.auth.captcha
 });
 
 export default connect(

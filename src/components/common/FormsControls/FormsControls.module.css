@@ -11,8 +11,18 @@
 
 .formSummaryError {
   display: inline-block;
+  max-width: 250px;
   border: solid 1px red;
   padding: 5px;
   margin: 5px 0;
   color: #ea4335;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.captcha {
+  width: 150px;
 }
