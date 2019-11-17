@@ -29,8 +29,9 @@ const ProfileInfo = ({
     if (!formData.lookingForAJobDescription) {
       formData.lookingForAJobDescription = "-";
     }
-    saveProfileData(formData);
-    setEditMode(false);
+    saveProfileData(formData).then(() => {
+      setEditMode(false);
+    });
   };
 
   return (
@@ -60,7 +61,7 @@ const ProfileInfo = ({
             }}
           />
         ) : (
-          <ProfileEditForm onSubmit={onSubmit} />
+          <ProfileEditForm initialValues={profile} onSubmit={onSubmit} />
         )}
       </div>
     </div>
