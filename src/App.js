@@ -1,7 +1,13 @@
 import React, { Suspense, lazy, useEffect } from "react";
 import { compose } from "redux";
 import { Provider, connect } from "react-redux";
-import { BrowserRouter, withRouter, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  withRouter,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import { store } from "./redux/redux-store";
 import { initializeApp } from "./redux/app-reducer";
 import HeaderContainer from "./components/Header/HeaderContainer";
@@ -33,13 +39,22 @@ const App = props => {
       <Navbar />
       <div className="app-wrapper__content">
         <Suspense fallback={<Preloader />}>
-          <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-          <Route path="/dialogs" render={() => <DialogsContainer />} />
-          <Route path="/news" render={() => <Dummy />} />
-          <Route path="/music" render={() => <Dummy />} />
-          <Route path="/settings" render={() => <Dummy />} />
-          <Route path="/users" render={() => <UsersContainer />} />
-          <Route path="/login" render={() => <Login />} />
+          <Switch>
+            <Route exact path="/">
+              <Redirect to="/profile" />
+            </Route>
+            <Route
+              path="/profile/:userId?"
+              render={() => <ProfileContainer />}
+            />
+            <Route path="/dialogs" render={() => <DialogsContainer />} />
+            <Route path="/news" render={() => <Dummy />} />
+            <Route path="/music" render={() => <Dummy />} />
+            <Route path="/settings" render={() => <Dummy />} />
+            <Route path="/users" render={() => <UsersContainer />} />
+            <Route path="/login" render={() => <Login />} />
+            <Route path="*" render={() => <p>404 NOT FOUND</p>} />
+          </Switch>
         </Suspense>
       </div>
     </div>
