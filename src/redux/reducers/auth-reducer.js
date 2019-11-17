@@ -1,4 +1,4 @@
-import { authAPI, securityAPI } from "../api/api";
+import { authAPI, securityAPI } from "../../assets/api";
 import { stopSubmit } from "redux-form";
 const SET_USER_DATA = "epp-social-network/auth/SET_USER_DATA";
 const SET_CAPTCHA = "epp-social-network/auth/SET-CAPTCHA";
@@ -47,7 +47,12 @@ export const getMe = () => async dispatch => {
   }
 };
 
-export const login = (email, password, rememberMe, captcha) => async dispatch => {
+export const login = (
+  email,
+  password,
+  rememberMe,
+  captcha
+) => async dispatch => {
   const response = await authAPI.login(email, password, rememberMe, captcha);
   if (response.data.resultCode === 0) {
     dispatch(getMe());

@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
-import Profile from "./Profile";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { compose } from "redux";
+import Profile from "./Profile";
 import {
   getProfile,
   getStatus,
   updateStatus,
   savePhoto,
   saveProfileData
-} from "../../redux/profile-reducer";
-import { compose } from "redux";
+} from "../../redux/reducers/profile-reducer";
 import {
   selectProfile,
   selectStatus,

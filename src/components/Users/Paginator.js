@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import s from "./Users.module.css";
 import cn from "classnames";
+import css from "../../css/Users/Users.module.css";
 
 const Paginator = ({
   totalCount,
@@ -27,7 +27,7 @@ const Paginator = ({
   };
 
   return (
-    <div className={s.paginator}>
+    <div className={css.paginator}>
       {portionNumber > 1 ? (
         <button onClick={prev}>PREV</button>
       ) : (
@@ -41,8 +41,8 @@ const Paginator = ({
         .map(page => (
           <span
             className={cn(
-              { [s.selectedPage]: currentPage === page },
-              s.pageNumber
+              { [css.selectedPage]: currentPage === page },
+              css.pageNumber
             )}
             key={page}
             onClick={() => {

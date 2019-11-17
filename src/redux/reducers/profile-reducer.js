@@ -1,5 +1,5 @@
-import { profileAPI } from "../api/api";
 import { stopSubmit } from "redux-form";
+import { profileAPI } from "../../assets/api";
 const ADD_POST = "epp-social-network/profilePage/ADD-POST";
 const SET_PROFILE = "epp-social-network/profilePage/SET-PROFILE";
 const SET_STATUS = "epp-social-network/profilePage/SET-STATUS";

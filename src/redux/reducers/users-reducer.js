@@ -1,5 +1,5 @@
-import { usersAPI } from "../api/api";
-import { changeObjectPropInArrayById } from "../utils/helpers";
+import { usersAPI } from "../../assets/api";
+import { changeObjectPropInArrayById } from "../../utils/helpers";
 
 const FOLLOW = "epp-social-network/usersPage/FOLLOW";
 const UNFOLLOW = "epp-social-network/usersPage/UNFOLLOW";

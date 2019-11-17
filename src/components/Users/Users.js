@@ -1,7 +1,7 @@
 import React from "react";
 import Paginator from "./Paginator";
 import User from "./User";
-import s from "./Users.module.css";
+import css from "../../css/Users/Users.module.css";
 
 const Users = ({
   users,
@@ -13,7 +13,7 @@ const Users = ({
   followingInProgress
 }) => {
   return (
-    <div className={s.usersPage}>
+    <div className={css.usersPage}>
       <Paginator
         totalCount={totalCount}
         pageSize={pageSize}

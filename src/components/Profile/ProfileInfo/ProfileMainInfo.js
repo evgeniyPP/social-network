@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileStatus from "./ProfileStatus";
-import css from "./ProfileInfo.module.css";
+import css from "../../../css/Profile/Profile.module.css";
 
 export default ({ profile, status, updateStatus, isOwner, editModeOn }) => {
   const {
@@ -36,7 +36,7 @@ export default ({ profile, status, updateStatus, isOwner, editModeOn }) => {
         <p className={css.github}>{contacts.github}</p>
         <p className={css.mainLink}>{contacts.mainLink}</p>
 
-        {isOwner ? <button onClick={editModeOn} >Редактировать</button> : ""}
+        {isOwner ? <button onClick={editModeOn}>Редактировать</button> : ""}
       </div>
     </div>
   );

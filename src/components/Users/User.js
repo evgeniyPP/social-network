@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import userPhoto from "../../images/avatar.jpg";
+import userPhoto from "../../assets/images/avatar.jpg";
 
 const User = ({ user, following, followingInProgress }) => {
   return (

@@ -1,8 +1,8 @@
 import React from "react";
 import { reduxForm } from "redux-form";
-import Element, { createField } from "../../common/FormsControls/FormsControls";
+import Element, { createField } from "../../../utils/common/FormsControls";
 import { required, maxLength } from "../../../utils/validators";
-import s from "../../common/FormsControls/FormsControls.module.css";
+import css from "../../../css/common/FormsControls.module.css";
 
 const thisMaxLength = maxLength(25);
 const Input = Element("input");
@@ -43,7 +43,7 @@ const ProfileEditForm = ({ handleSubmit, error }) => {
           null
         )}
         <button>Сохранить</button>
-        {error && <div className={s.formSummaryError}>{error}</div>}
+        {error && <div className={css.formSummaryError}>{error}</div>}
       </div>
     </form>
   );

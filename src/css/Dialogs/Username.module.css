@@ -20,7 +20,7 @@
   width: 50px;
   height: 50px;
   left: 0;
-  background: url("../../../images/avatar.png") 50% 50%;
+  background: url("../../assets/images/avatar.png") 50% 50%;
   border: 2px solid #444a64;
   border-radius: 50%;
 }

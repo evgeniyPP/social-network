@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Preloader from "../../common/Preloader/Preloader";
+import Preloader from "../../../utils/common/Preloader";
 import ProfileMainInfo from "./ProfileMainInfo";
 import ProfileEditForm from "./ProfileEditForm";
-import s from "./ProfileInfo.module.css";
-import avatar from "../../../images/avatar.jpg";
+import css from "../../../css/Profile/Profile.module.css";
+import avatar from "../../../assets/images/avatar.jpg";
 
 const ProfileInfo = ({
   profile,
@@ -35,16 +35,16 @@ const ProfileInfo = ({
   };
 
   return (
-    <div className={s.profileInfo}>
+    <div className={css.profileInfo}>
       <img
-        className={s.bigImage}
+        className={css.bigImage}
         src="https://picsum.photos/id/993/1000/150"
         alt="main"
       />
-      <div className={s.information}>
-        <div className={s.avatar}>
+      <div className={css.information}>
+        <div className={css.avatar}>
           <img
-            className={s.userPhoto}
+            className={css.userPhoto}
             src={profile.photos.large || avatar}
             alt=""
           />

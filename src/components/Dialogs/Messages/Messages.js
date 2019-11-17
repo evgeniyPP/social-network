@@ -1,6 +1,8 @@
 import React from "react";
-import { Message } from "./Message/Message";
 import NewMessage from "./NewMessage";
+import css from "../../../css/Dialogs/Messages.module.css";
+
+const Message = props => <p className={css.message}>{props.text}</p>;
 
 const Messages = props => {
   const addMessage = values => {

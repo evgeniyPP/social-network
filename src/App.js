@@ -9,20 +9,16 @@ import {
   Redirect
 } from "react-router-dom";
 import { store } from "./redux/redux-store";
-import { initializeApp } from "./redux/app-reducer";
-import HeaderContainer from "./components/Header/HeaderContainer";
-import UsersContainer from "./components/Users/UsersContainer";
+import { initializeApp } from "./redux/reducers/app-reducer";
+import Header from "./components/Header/HeaderContainer";
+import Users from "./components/Users/UsersContainer";
 import Navbar from "./components/Navbar/Navbar";
-import Dummy from "./components/common/Dummy/Dummy";
-import Login from "./components/Login/Login";
-import Preloader from "./components/common/Preloader/Preloader";
-import "./App.css";
-const ProfileContainer = lazy(() =>
-  import("./components/Profile/ProfileContainer")
-);
-const DialogsContainer = lazy(() =>
-  import("./components/Dialogs/DialogsContainer")
-);
+import Dummy from "./utils/common/Dummy";
+import Login from "./components/Login/LoginContainer";
+import Preloader from "./utils/common/Preloader";
+import "./css/App.css";
+const Profile = lazy(() => import("./components/Profile/ProfileContainer"));
+const Dialogs = lazy(() => import("./components/Dialogs/DialogsContainer"));
 
 const App = props => {
   useEffect(() => {
@@ -35,7 +31,7 @@ const App = props => {
 
   return (
     <div className="app-wrapper">
-      <HeaderContainer />
+      <Header />
       <Navbar />
       <div className="app-wrapper__content">
         <Suspense fallback={<Preloader />}>
@@ -43,15 +39,12 @@ const App = props => {
             <Route exact path="/">
               <Redirect to="/profile" />
             </Route>
-            <Route
-              path="/profile/:userId?"
-              render={() => <ProfileContainer />}
-            />
-            <Route path="/dialogs" render={() => <DialogsContainer />} />
+            <Route path="/profile/:userId?" render={() => <Profile />} />
+            <Route path="/dialogs" render={() => <Dialogs />} />
             <Route path="/news" render={() => <Dummy />} />
             <Route path="/music" render={() => <Dummy />} />
             <Route path="/settings" render={() => <Dummy />} />
-            <Route path="/users" render={() => <UsersContainer />} />
+            <Route path="/users" render={() => <Users />} />
             <Route path="/login" render={() => <Login />} />
             <Route path="*" render={() => <p>404 NOT FOUND</p>} />
           </Switch>
