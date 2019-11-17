@@ -1,6 +1,5 @@
 import React from "react";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-
 import PostsContainer from "./Posts/PostsContainer";
 
 const Profile = props => {
@@ -12,6 +11,7 @@ const Profile = props => {
         updateStatus={props.updateStatus}
         isOwner={props.isOwner}
         savePhoto={props.savePhoto}
+        saveProfileData={props.saveProfileData}
       />
       <PostsContainer />
     </div>

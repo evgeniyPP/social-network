@@ -4,6 +4,7 @@ const SET_PROFILE = "epp-social-network/profilePage/SET-PROFILE";
 const SET_STATUS = "epp-social-network/profilePage/SET-STATUS";
 const DELETE_POST = "epp-social-network/profilePage/DELETE-POST";
 const SET_PHOTO = "epp-social-network/profilePage/SET-PHOTO";
+const SET_PROFILE_DATA = "epp-social-network/profilePage/SET-PROFILE-DATA";
 
 const initialState = {
   postsDB: [
@@ -61,7 +62,9 @@ const profileReducer = (state = initialState, action) => {
     case SET_STATUS:
       return { ...state, status: action.status };
     case SET_PHOTO:
-      return { ...state, profile: {...state.profile, photos: action.photo} };
+      return { ...state, profile: { ...state.profile, photos: action.photo } };
+    case SET_PROFILE_DATA:
+      return { ...state, profile: { ...state.profile, photos: action.photo } };
     default:
       return state;
   }
@@ -76,6 +79,10 @@ export const deletePost = postId => ({ type: DELETE_POST, postId });
 const setProfile = profile => ({ type: SET_PROFILE, profile });
 const setStatus = status => ({ type: SET_STATUS, status });
 const setPhoto = photo => ({ type: SET_PHOTO, photo });
+const setProfileData = newProfileData => ({
+  type: SET_PROFILE_DATA,
+  newProfileData
+});
 
 // Thunk Creator
 export const getProfile = userId => async dispatch => {
@@ -96,6 +103,12 @@ export const savePhoto = photo => async dispatch => {
   const response = await profileAPI.savePhoto(photo);
   if (response.data.resultCode === 0) {
     dispatch(setPhoto(response.data.data.photos));
+  }
+};
+export const saveProfileData = newProfileData => async dispatch => {
+  const response = await profileAPI.saveProfileData(newProfileData);
+  if (response.data.resultCode === 0) {
+    // dispatch(setProfileData(response.data));
   }
 };
 

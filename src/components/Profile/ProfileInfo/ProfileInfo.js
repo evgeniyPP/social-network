@@ -1,15 +1,23 @@
-import React from "react";
-import s from "./ProfileInfo.module.css";
-import ProfileStatus from "../ProfileStatus/ProfileStatus";
+import React, { useState } from "react";
 import Preloader from "../../common/Preloader/Preloader";
+import ProfileMainInfo from "./ProfileMainInfo";
+import ProfileEditForm from "./ProfileEditForm";
+import s from "./ProfileInfo.module.css";
 import avatar from "../../../images/avatar.jpg";
 
-const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
+const ProfileInfo = ({
+  profile,
+  status,
+  updateStatus,
+  isOwner,
+  savePhoto,
+  saveProfileData
+}) => {
+  const [editMode, setEditMode] = useState(false);
+
   if (!profile) {
     return <Preloader />;
   }
-
-  const { photos, fullName, aboutMe, contacts } = profile;
 
   const onAddPhoto = e => {
     if (e.target.files.length) {
@@ -17,34 +25,43 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
     }
   };
 
+  const onSubmit = formData => {
+    if (!formData.lookingForAJobDescription) {
+      formData.lookingForAJobDescription = "-";
+    }
+    saveProfileData(formData);
+    setEditMode(false);
+  };
+
   return (
     <div className={s.profileInfo}>
-      <div>
-        <img
-          className={s.bigImage}
-          src="https://picsum.photos/id/993/1000/150"
-          alt="main"
-        />
-        {isOwner ? <input type="file" onChange={onAddPhoto} /> : ""}
-      </div>
+      <img
+        className={s.bigImage}
+        src="https://picsum.photos/id/993/1000/150"
+        alt="main"
+      />
       <div className={s.information}>
-        <img className={s.userPhoto} src={photos.large || avatar} alt="" />
-        <div className={s.mainInfo}>
-          <p className={s.fullName}>{fullName}</p>
-          <p className={s.aboutMe}>{aboutMe}</p>
-          <ProfileStatus status={status} updateStatus={updateStatus} />
+        <div className={s.avatar}>
+          <img
+            className={s.userPhoto}
+            src={profile.photos.large || avatar}
+            alt=""
+          />
+          {isOwner ? <input type="file" onChange={onAddPhoto} /> : ""}
         </div>
-        <div className={s.contacts}>
-          <p className={s.facebook}>{contacts.facebook}</p>
-          <p className={s.website}>{contacts.website}</p>
-          <p className={s.vk}>{contacts.vk}</p>
-          <p className={s.twitter}>{contacts.twitter}</p>
-          <p className={s.instagram}>{contacts.instagram}</p>
-          <p className={s.youtube}>{contacts.youtube}</p>
-          <p className={s.github}>{contacts.github}</p>
-          <p className={s.mainLink}>{contacts.mainLink}</p>
-        </div>
-        <p className={s.fullName}></p>
+        {!editMode ? (
+          <ProfileMainInfo
+            profile={profile}
+            status={status}
+            updateStatus={updateStatus}
+            isOwner={isOwner}
+            editModeOn={() => {
+              setEditMode(true);
+            }}
+          />
+        ) : (
+          <ProfileEditForm onSubmit={onSubmit} />
+        )}
       </div>
     </div>
   );
