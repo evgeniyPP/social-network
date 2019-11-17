@@ -4,12 +4,18 @@ import ProfileStatus from "../ProfileStatus/ProfileStatus";
 import Preloader from "../../common/Preloader/Preloader";
 import avatar from "../../../images/avatar.jpg";
 
-const ProfileInfo = ({ profile, status, updateStatus }) => {
+const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
   if (!profile) {
     return <Preloader />;
   }
 
   const { photos, fullName, aboutMe, contacts } = profile;
+
+  const onAddPhoto = e => {
+    if (e.target.files.length) {
+      savePhoto(e.target.files[0]);
+    }
+  };
 
   return (
     <div className={s.profileInfo}>
@@ -19,6 +25,7 @@ const ProfileInfo = ({ profile, status, updateStatus }) => {
           src="https://picsum.photos/id/993/1000/150"
           alt="main"
         />
+        {isOwner ? <input type="file" onChange={onAddPhoto} /> : ""}
       </div>
       <div className={s.information}>
         <img className={s.userPhoto} src={photos.large || avatar} alt="" />
